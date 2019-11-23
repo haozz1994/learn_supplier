@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+
+        http://cxf.apache.org/jaxws
+        http://cxf.apache.org/schemas/jaxws.xsd">
+
+    <!-- applicationContext.xml中引入CXF配置文件-->
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+    <!--class实现类路径-->
+    <bean id="Fdms" class="com.skytech.tjfwjk.webService.impl.JwsServiceImpl"/>
+    <!-- serviceClass 是接口的路径-->
+    <jaxws:server serviceClass="com.skytech.tjfwjk.webService.JwsService "
+                  address="/server">
+        <jaxws:serviceBean>
+            <ref bean="Fdms"/>
+        </jaxws:serviceBean>
+    </jaxws:server>
+</beans>
